@@ -2,6 +2,8 @@
 
 return [
 
+
+    'chatgpt_apikey' => env('OPENAI_API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
