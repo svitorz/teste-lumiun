@@ -11,11 +11,14 @@
         </div>
         </form>
     </div>
-    <p class="text-red-600 small text-center text-md">Accepted files: .txt</p>
+    <p class="dark:text-white small text-center text-md">Accepted files: .txt</p>
 
     @isset($lines)
+    <p class="dark:text-green-600 text-green-400">
+        Foram encontrados os seguintes domínios validados:
        @foreach ($lines as $line)
-           {{ $line }}
+        {{ $line . "\n"}}
        @endforeach
     @endisset
+    </p>
 </div>

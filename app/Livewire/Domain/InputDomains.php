@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Domain;
 
+use App\Jobs\ProccessDomainCategory;
 use App\Models\Domain;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,10 +17,11 @@ class InputDomains extends Component
     #[Validate('required|file|mimes:txt', message: "Follow the accepted files.")]
     public $domains;
 
-    public $lines = [];
+    public $lines;
 
     public function save()
     {
+        $user_id = Auth::id();
         $domain = new Domain();
 
         $this->lines = []; // impedir que dois arquivos de envios diferentes se misturem.
@@ -31,6 +34,8 @@ class InputDomains extends Component
             if (!empty($linha)) {
                 if($domain->validateDomains($linha)){
                     $this->lines[] = $linha;
+                    // Leva o domínio a ser categorizado e posteriormente cadastrado.
+                    ProccessDomainCategory::dispatch($linha,$user_id);
                 }
             }
         }
