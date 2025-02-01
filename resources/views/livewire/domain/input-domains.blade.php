@@ -19,6 +19,10 @@
        @foreach ($lines as $line)
         {{ $line . "\n"}}
        @endforeach
+        @empty($lines)
+            <p class="text-red-600">Nenhum domínio foi validado.</p>
+        @endempty
     @endisset
     </p>
+
 </div>
