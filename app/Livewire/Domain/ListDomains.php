@@ -2,24 +2,36 @@
 
 namespace App\Livewire\Domain;
 
+use App\Models\Category;
 use App\Models\Domain;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 class ListDomains extends Component
 {
+    use WithPagination;
 
-    public $domains;
+    public $selectedCategory = null;
 
-    public $orderBy = 'created_at';
-    public $method = 'asc';
-
-    public function mount(): void
-    {
-        $authUser = Auth::id();
-        $this->domains = Domain::where('user_id',$authUser)->with('category')->get();
-    }
     public function render()
     {
-        return view('livewire.domain.list-domains');
+        $authId = Auth::id();
+        $categories = Category::get();
+
+        $domains = $this->selectedCategory
+            ? Domain::where('user_id',$authId)->where('category_id', $this->selectedCategory)->paginate(10)
+            : Domain::where('user_id',$authId)->paginate(10);
+
+        return view('livewire.domain.list-domains', [
+            'categories' => $categories,
+            'domains' => $domains,
+        ]);
+    }
+
+    public function filterByCategory($categoryId)
+    {
+        $this->selectedCategory = $categoryId;
+        $this->resetPage();
     }
 }
