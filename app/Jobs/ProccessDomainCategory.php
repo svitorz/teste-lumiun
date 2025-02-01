@@ -35,7 +35,7 @@ class ProccessDomainCategory implements ShouldQueue
     {
         try {
             $apiUrl = "https://api.openai.com/v1/chat/completions";
-            $openaiKey = env('OPENAI_API_KEY');
+            $openaiKey = config('services.chatgpt_apikey');
             $response = Http::withHeaders([
                 'Authorization' => "Bearer $openaiKey" ,
                 'Content-Type'  => 'application/json',
