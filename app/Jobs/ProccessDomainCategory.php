@@ -23,9 +23,7 @@ class ProccessDomainCategory implements ShouldQueue
     {
         $this->user_id = $user_id;
         $this->domain = $domain;
-        $this->prompt = "de acordo com esta lista: Redes Sociais, E-commerce, Entretenimento, Educação, Notícias, Tecnologia, Finanças, Saúde, Adulto, Outros.
-            Imagine que os valores estão enumerados de 1 a 10, me fale, em apenas um número como resposta, qual destas categorias se encaixa melhor com este domínio dns: $this->domain?
-            OBSERVAÇÃO: ME RESPONDA APENAS COM O NÚMERO CORRESPONDENTE AO DA LISTA!!";
+        $this->prompt = "Categorize the website {$this->domain} into one of the following categories and respond with *only the corresponding number* (1-10): Redes Sociais (1), E-commerce (2), Entretenimento (3), Educação (4), Notícias (5), Tecnologia (6), Finanças (7), Saúde (8), Adulto (9), Outros (10).";
     }
 
     /**
@@ -50,11 +48,15 @@ class ProccessDomainCategory implements ShouldQueue
                 return;
             }
 
-            $data = $response->json();
-            $categoryId = (int) trim($data['choices'][0]['message']['content'] ?? "0");
+            $data = json_decode($response,true);
+            $categoryId = 0;
+            if(isset($data) && !empty($data)){
+                $categoryId = intval(trim($data['candidates'][0]['content']['parts'][0]['text']));
+            }
 
             if ($categoryId < 1 || $categoryId > 10) {
-                Log::warning("Resposta inválida da API para domínio {$this->domain}: {$categoryId}");
+                $body = $response->body();
+                Log::warning("Resposta inválida da API para domínio: $categoryId");
                 return;
             }
 
@@ -63,6 +65,7 @@ class ProccessDomainCategory implements ShouldQueue
                 'user_id' => $this->user_id,
                 'category_id' => $categoryId
             ]);
+            Log::info('Job successfully completed.');
 
         } catch (\Exception $e) {
             Log::error("Erro no Job ProcessDomainCategory: " . $e->getMessage());

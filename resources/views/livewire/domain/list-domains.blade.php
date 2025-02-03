@@ -25,6 +25,7 @@
                 <th>
                     Date
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,11 @@
                     </td>
                     <td class="px-6 py-4">
                         {{ $domain->created_at->format('h:m - d.m.Y')}}
+                    </td>
+                    <td>
+                        <button type="button" wire:click="destroy($domain->id)"     wire:confirm="Are you sure you want to delete this domain?" >
+                            <x-bi-trash class="text-red-600" />
+                        </button>
                     </td>
             </tr>
             @endforeach

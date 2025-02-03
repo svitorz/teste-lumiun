@@ -10,7 +10,10 @@ Após isto, comecei a pensar qual o melhor modelo para realizar de pastas para o
 
 ## Passo a passo para funcionamento do sistema.
 
-Apesar do ChatGPT solicitar pagamentos para alguns tipos específicos de requisição, eles permitem a utilização da API até que seu limite seja atingido (limite de requisições), e o fator crucial para a escolha do modelo da OpenAI foi o fato de que o DeepSeek estava em manutenção durante o período de de desenvolvimento deste teste.
+Durante o desenvolvimento, troquei de modelo algumas vezes na tentativa de oferecer a menor quantidade de erros, e optei por utilizar Gemini na versão final.
+Apesar de open-source, o DeepSeek esteve com a API fora do ar desde o dia em que o teste foi enviado. Mesmo sendo a minha opção favorita, não foi possível. Com o ChatGPT da OpenAI foram realizados 1 dia e meio de testes, mas depois da segunda tentativa ele falhava e solicitava pagamentos (uso da versão PRO). Por fim, aderi ao Gemini, que também esteve fora do ar e também solicita pagamentos, mas até agora, foi o que mais permitiu testes e utilização sem pagamentos.
+
+(Obtenha suas credenciais)[CREDENCIAIS_GEMINI.md]
 
 ### Primeiros passos
 
@@ -33,6 +36,7 @@ Copie as informações do .env.example, em que dexei um modelo parecido com o ut
 cp .env.example .env
 ```
 
+Lembre-se de colocar sua chave de acesso do Gemini no .env, se você fizer como no passo a passo, a o valor estará logo no início do arquivo.
 A partir daqui, você deverá manter o servidor rodando, pode fazer isso com Sail
 
 ```bash
