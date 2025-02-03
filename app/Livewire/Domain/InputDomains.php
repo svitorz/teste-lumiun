@@ -32,11 +32,15 @@ class InputDomains extends Component
         $handle = fopen($this->domains->getRealPath(), "r");
 
         while (($linha = fgets($handle)) !== false) {
+            //remove os espações vazios.
             $linha = trim($linha);
+            //verifica se a linha não está vazia
             if (!empty($linha)) {
                 if($domain->validateDomains($linha)){
+                    //variável necessária para mostrar ao usuários quais os domínios são válidos.
                     $this->lines[] = $linha;
-                    // Leva o domínio a ser categorizado e posteriormente cadastrado.
+
+                    // Dispara um job e adiciona este processo a fila  para ser categorizado e posteriormente cadastrado.
                     ProccessDomainCategory::dispatch($linha,$user_id);
                 }
             }

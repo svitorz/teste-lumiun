@@ -29,6 +29,7 @@ class ListDomains extends Component
 
             if($domain->user_id != $this->authUser)
             {
+                // verifica se o usuário pode deletar este domínio, uma camada a mais de segurança.
                 abort(403);
             }
 
