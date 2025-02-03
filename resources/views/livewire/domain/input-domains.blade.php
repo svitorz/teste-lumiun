@@ -16,12 +16,12 @@
 
     @isset($lines)
     <p class="dark:text-green-600 text-green-400">
-        Foram encontrados os seguintes domínios validados:
+        The following validated domains were found.:
        @foreach ($lines as $line)
         {{ $line . "\n"}}
        @endforeach
         @empty($lines)
-            <p class="text-red-600">Nenhum domínio foi validado.</p>
+            <p class="text-red-600">No valid domains were found.</p>
         @endempty
     @endisset
     </p>
