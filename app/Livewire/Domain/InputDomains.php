@@ -21,7 +21,9 @@ class InputDomains extends Component
 
     public function save()
     {
+        // Utiliza o id do usuário autenticado
         $user_id = Auth::id();
+        //cria uma nova instância da model domínio
         $domain = new Domain();
 
         $this->lines = []; // impedir que dois arquivos de envios diferentes se misturem.

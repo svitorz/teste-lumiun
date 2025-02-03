@@ -25,7 +25,7 @@ class ProccessDomainCategory implements ShouldQueue
         $this->domain = $domain;
         $this->prompt = "de acordo com esta lista: Redes Sociais, E-commerce, Entretenimento, Educação, Notícias, Tecnologia, Finanças, Saúde, Adulto, Outros.
             Imagine que os valores estão enumerados de 1 a 10, me fale, em apenas um número como resposta, qual destas categorias se encaixa melhor com este domínio dns: $this->domain?
-            OBSERVAÇÃO: ME RESPONDA APENAS COM O NÚMERO CORRESPONDENTE AO DA LISTA.";
+            OBSERVAÇÃO: ME RESPONDA APENAS COM O NÚMERO CORRESPONDENTE AO DA LISTA!!";
     }
 
     /**
@@ -34,23 +34,19 @@ class ProccessDomainCategory implements ShouldQueue
     public function handle(): void
     {
         try {
-            $apiUrl = "https://api.openai.com/v1/chat/completions";
-            $openaiKey = config('services.chatgpt_apikey');
+            $geminiKey = config("services.gemini");
+            $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=" . $geminiKey;
             $response = Http::withHeaders([
-                'Authorization' => "Bearer $openaiKey" ,
-                'Content-Type'  => 'application/json',
+                'Content-Type' => 'application/json'
             ])->post($apiUrl, [
-                'model' => 'gpt-4o-mini',
-                'messages' => [
-                    ['role' => 'system', 'content' => 'Você é um assistente útil.'],
-                    ['role' => 'user', 'content' => $this->prompt],
-                ],
-                'temperature' => 0.7,
-                    'max_tokens' => 5,
-            ]);
+                "contents" => [
+                    "parts" => ["text" => $this->prompt]
+                ]]);
 
             if ($response->failed()) {
-                Log::error("Falha na API OpenAI: " . $response->body());
+                $status = $response->status();
+                $body = $response->body();
+                Log::error("Gemini API request failed with status: {$status}, body: {$body}");
                 return;
             }
 
