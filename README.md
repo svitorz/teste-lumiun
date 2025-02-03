@@ -13,7 +13,7 @@ Após isto, comecei a pensar qual o melhor modelo para realizar de pastas para o
 Durante o desenvolvimento, troquei de modelo algumas vezes na tentativa de oferecer a menor quantidade de erros, e optei por utilizar Gemini na versão final.
 Apesar de open-source, o DeepSeek esteve com a API fora do ar desde o dia em que o teste foi enviado. Mesmo sendo a minha opção favorita, não foi possível. Com o ChatGPT da OpenAI foram realizados 1 dia e meio de testes, mas depois da segunda tentativa ele falhava e solicitava pagamentos (uso da versão PRO). Por fim, aderi ao Gemini, que também esteve fora do ar e também solicita pagamentos, mas até agora, foi o que mais permitiu testes e utilização sem pagamentos.
 
-(Obtenha suas credenciais)[CREDENCIAIS_GEMINI.md]
+[Obtenha suas credenciais](CREDENCIAIS_GEMINI.md)
 
 ### Primeiros passos
 
