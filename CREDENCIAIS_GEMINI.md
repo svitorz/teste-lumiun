@@ -1,6 +1,6 @@
 # Tutorial para uso de credencias da Api do Gemini
 
-Primeiro passo, acesse o site [ai.google](ai.google.dev) e através dele faremos a solicitação da chave da API.
+Primeiro passo, acesse o site [ai.google](https://ai.google.dev) e através dele faremos a solicitação da chave da API.
 
 Clique em "Explore Model in Google AI Studio", após isso, ele irá solicitar um login com a sua conta do Google.
 
