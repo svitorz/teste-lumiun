@@ -41,7 +41,7 @@
                         {{ $domain->created_at->format('h:m - d.m.Y')}}
                     </td>
                     <td>
-                        <button type="button" wire:click="destroy($domain->id)"     wire:confirm="Are you sure you want to delete this domain?" >
+                        <button type="button" wire:click="destroy({{ $domain->id }})" wire:confirm="Are you sure you want to delete this domain?" >
                             <x-bi-trash class="text-red-600" />
                         </button>
                     </td>
