@@ -77,4 +77,4 @@ Agora, acesse:
 http://localhost
 ```
 
-E tudo estará pronto para os testes.
+E tudo estará pronto para os testes. (OBS: é possível que haja erros, principalmente caso a API do Google receba muitas requisições ou esteja fora do ar. Para verificar se há erros, você pode verificar os arquivos de log: storage/logs/laravel.log)
