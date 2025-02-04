@@ -30,4 +30,5 @@
             </div>
         </div>
     </div>
+    @livewire('toast-manager')
 </x-app-layout>

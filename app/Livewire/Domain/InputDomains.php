@@ -18,7 +18,6 @@ class InputDomains extends Component
     public $domains;
 
     public $lines;
-
     public function save()
     {
         // Utiliza o id do usuário autenticado
@@ -44,6 +43,11 @@ class InputDomains extends Component
                     ProccessDomainCategory::dispatch($linha,$user_id);
                 }
             }
+            if(empty($this->lines)){
+                $this->dispatch('showToast', "No validated domains were found.", 'danger');
+            }
+            $this->dispatch('showToast', "" . count($this->lines) . " validated domains were found.", 'success');
+
         }
 
         fclose($handle);

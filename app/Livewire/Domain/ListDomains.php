@@ -29,11 +29,11 @@ class ListDomains extends Component
 
             if($domain->user_id != $this->authUser)
             {
-                // verifica se o usuário pode deletar este domínio, uma camada a mais de segurança.
                 abort(403);
             }
-
             $domain->delete();
+            $this->dispatch('showToast', 'Domain deleted!', 'warning');
+
         }catch(Exception $e){
             Log::error('Error deleting' . $e->getMessage());
         }
