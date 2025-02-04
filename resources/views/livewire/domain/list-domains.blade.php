@@ -1,7 +1,6 @@
 <div class="relative overflow-x-auto" x-init="setInterval(() => {
             $wire.$refresh()
         }, 5000)">
-    <!-- atualiza o componente a cada 5 segundos. -->
 
     <div class="max-w-sm mx-auto py-6">
         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category:</label>

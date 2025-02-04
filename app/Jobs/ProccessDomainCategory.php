@@ -16,6 +16,7 @@ class ProccessDomainCategory implements ShouldQueue
     protected string $prompt;
     protected string $domain;
     protected int $user_id;
+
     /**
      * Create a new job instance.
      */

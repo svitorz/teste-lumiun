@@ -7,12 +7,12 @@ use Livewire\Component;
 class ToastManager extends Component
 {
     public $message;
-    public $type = 'info'; // Tipo padrão
+    public $type = 'info';
     public $show = false;
 
     protected $listeners = ['showToast'];
 
-    public function showToast($message, $type = 'info')
+    public function showToast($message, $type)
     {
         $this->message = $message;
         $this->type = $type;
