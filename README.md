@@ -6,7 +6,7 @@ Para a realização do que foi solicitado, passei por alguns processos, e o prim
 
 ![image](docs/class_diagram.png)
 
-Após isto, comecei a pensar qual o melhor modelo para realizar de pastas para o projeto, pensei em utilizar Traits para o domínio, já que haveria poucas funcionalidades. Para as requisições com IA, utilizei Jobs, para também utilizar de filas e manter a aplicação sem perigos de sobrecarga. Por fim, utilizei Laravel Sail para não ocorrer problemas de ambiente, nem divergências durante o desenvolvimento e a testagem.
+Após isto, comecei a pensar qual o melhor modelo para realizar de pastas para o projeto, pensei em utilizar Traits para o domínio, já que haveria poucas funcionalidades, mas optei por manter a validação dentro da model. Para as requisições com IA, utilizei Jobs, para também utilizar de filas e manter a aplicação sem perigos de sobrecarga. Por fim, utilizei Laravel Sail para não ocorrer problemas de ambiente, nem divergências durante o desenvolvimento e a testagem.
 
 ## Passo a passo para funcionamento do sistema.
 
